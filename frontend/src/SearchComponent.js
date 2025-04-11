@@ -78,8 +78,8 @@ const SearchComponent = () => {
 
         try {
             const [ytRes, googleRes] = await Promise.all([
-                axios.get(`http://localhost:5000/api/youtube?q=${queryToUse}`),
-                axios.get(`http://localhost:5000/api/google?q=${queryToUse}`)
+                axios.get(`https://intellisearchai.onrender.com/api/youtube?q=${queryToUse}`),
+                axios.get(`https://intellisearchai.onrender.com/api/google?q=${queryToUse}`)
             ]);
 
             setYoutubeResults(ytRes.data);
@@ -87,7 +87,7 @@ const SearchComponent = () => {
 
             try {
                 console.log(queryToUse);
-                const aiRes = await axios.post("http://localhost:5000/api/summary", { topic: queryToUse });
+                const aiRes = await axios.post("https://intellisearchai.onrender.com/api/summary", { topic: queryToUse });
                 console.log(queryToUse);
                 // Remove the first line
                 const cleanedText = aiRes.data.summary.replace(/^Summarize the following.*?\n/, "").trim();
@@ -133,7 +133,7 @@ const SearchComponent = () => {
         setTranslatedSummary("Translating...");
 
         try {
-            const translateRes = await axios.post("http://localhost:5000/api/translate", {
+            const translateRes = await axios.post("https://intellisearchai.onrender.com/api/translate", {
                 summary,
                 targetLanguages: [selectedLanguage] // Sending an array
             });
@@ -252,7 +252,7 @@ const SearchComponent = () => {
         if (!userId) return;
     
         try {
-            const response = await fetch(`http://localhost:5000/api/user/${userId}/save-history`, {
+            const response = await fetch(`https://intellisearchai.onrender.com/api/user/${userId}/save-history`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
