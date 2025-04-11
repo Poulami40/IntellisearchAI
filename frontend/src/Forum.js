@@ -15,7 +15,7 @@ const Forum = () => {
 
     const fetchQuestions = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/forum/get-questions");
+            const response = await axios.get("https://intellisearchai.onrender.com/forum/get-questions");
             setQuestions(response.data);
         } catch (error) {
             console.error("Error fetching questions:", error);
@@ -25,7 +25,7 @@ const Forum = () => {
     const postQuestion = async () => {
         if (!newQuestion.trim()) return alert("Question cannot be empty!");
         try {
-            await axios.post("http://localhost:5000/forum/post-question", {
+            await axios.post("https://intellisearchai.onrender.com/forum/post-question", {
                 userId,
                 question: newQuestion
             });
@@ -39,7 +39,7 @@ const Forum = () => {
     const postReply = async (postId) => {
         if (!replies[postId] || !replies[postId].trim()) return alert("Reply cannot be empty!");
         try {
-            await axios.post(`http://localhost:5000/forum/post-reply/${postId}`, {
+            await axios.post(`https://intellisearchai.onrender.com/forum/post-reply/${postId}`, {
                 userId,
                 replyText: replies[postId]
             });
