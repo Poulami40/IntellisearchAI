@@ -25,7 +25,7 @@ const Profile = () => {
                 console.error("❌ No token found in localStorage!");
                 return;
             }
-            const response = await fetch("http://localhost:5000/profile", {
+            const response = await fetch("https://intellisearchai.onrender.com/profile", {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
             });
             const data = await response.json();
@@ -45,7 +45,7 @@ const Profile = () => {
 
         fetchProfile();
 
-        fetch(`http://localhost:5000/api/user/${userId}/history`, {
+        fetch(`https://intellisearchai.onrender.com/api/user/${userId}/history`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
         })
         .then(res => {
@@ -64,7 +64,7 @@ const Profile = () => {
     const handleUpdate = async () => {
         setMessage("");
         try {
-            const response = await fetch("http://localhost:5000/api/update-user", {
+            const response = await fetch("https://intellisearchai.onrender.com/api/update-user", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -93,7 +93,7 @@ const Profile = () => {
 
     const clearHistory = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/user/${userId}/clear-history`, {
+            const res = await fetch(`https://intellisearchai.onrender.com/api/user/${userId}/clear-history`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
             });
